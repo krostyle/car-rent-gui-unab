@@ -27,9 +27,6 @@ public class Vehiculo {
 
     @Override
     public String toString() {
-        return "Vehiculo{" +
-                "patente='" + patente + '\'' +
-                ", condicion=" + condicion +
-                '}';
+        return "Vehiculo" + patente + " con condicion " + condicion;
     }
 }

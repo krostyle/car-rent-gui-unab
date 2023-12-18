@@ -37,10 +37,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "cedula='" + cedula + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", vigente=" + vigente +
-                '}';
+        return "Cliente " + nombre + " con cedula " + cedula;
     }
 }
