@@ -1,6 +1,6 @@
 package domain;
 
-public class Arriendo {
+public abstract class Arriendo {
 
     private int numArriendo;
     private String fehcArriendo;
@@ -65,6 +65,8 @@ public class Arriendo {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
+
+
 
     public int obtenerMontoAPagar(int precioDia) {
         return precioDia * this.diasArriendo;

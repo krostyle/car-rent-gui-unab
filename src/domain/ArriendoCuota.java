@@ -2,18 +2,12 @@ package domain;
 
 import java.util.ArrayList;
 
-public class ArriendoCuota extends Arriendo{
+public class ArriendoCuota extends Arriendo {
     private int cantidadCuotas;
     private ArrayList<CuotaArriendo> cuotasAriendo;
 
-    public ArriendoCuota(int numArriendo, String fehcArriendo, int diasArriendo, Cliente cliente, Vehiculo vehiculo, int cantidadCuotas, ArrayList<CuotaArriendo> cuotasAriendo) {
+    public ArriendoCuota(int numArriendo, String fehcArriendo, int diasArriendo, Cliente cliente, Vehiculo vehiculo, int cantidadCuotas) {
         super(numArriendo, fehcArriendo, diasArriendo, cliente, vehiculo);
-        this.cantidadCuotas = cantidadCuotas;
-        this.cuotasAriendo = new ArrayList<>();
-    }
-
-    public ArriendoCuota(int numArriendo, String fehcArriendo, int diasArriendo, int cantidadCuotas, ArrayList<CuotaArriendo> cuotasAriendo) {
-        super(numArriendo, fehcArriendo, diasArriendo);
         this.cantidadCuotas = cantidadCuotas;
         this.cuotasAriendo = new ArrayList<>();
     }
@@ -34,10 +28,10 @@ public class ArriendoCuota extends Arriendo{
         this.cuotasAriendo = cuotasAriendo;
     }
 
-    public ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
+    private ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
         this.cuotasAriendo.clear();
         int montoTotal = this.obtenerMontoAPagar(precioDia);
-        int valorCuota = montoTotal / this.cantidadCuotas;
+        int valorCuota = Math.round(montoTotal / this.cantidadCuotas);
 
         for (int i = 0; i < this.cantidadCuotas; i++) {
             CuotaArriendo cuota = new CuotaArriendo(i + 1, valorCuota, false);
@@ -55,9 +49,11 @@ public class ArriendoCuota extends Arriendo{
         return false;
     }
 
-    public boolean pagarCuota(int numeroCuota){
+    public boolean pagarCuota(int numeroCuota) {
+        int montoPagado = 0;
         for (CuotaArriendo cuota : cuotasAriendo) {
-            if(cuota.getNumeroCuota() == numeroCuota && !cuota.isPagada()){
+            if (cuota.getNumeroCuota() == numeroCuota && !cuota.isPagada()) {
+                montoPagado += cuota.getValorCuota();
                 return cuota.pagarCuota();
             }
         }
@@ -66,9 +62,6 @@ public class ArriendoCuota extends Arriendo{
 
     @Override
     public String toString() {
-        return "ArriendoCuota{" +
-                "cantidadCuotas=" + cantidadCuotas +
-                ", cuotasAriendo=" + cuotasAriendo +
-                '}';
+        return "N° Arriendo " + this.getNumArriendo() + " Cliente " + this.getCliente().getNombre() + " Vehiculo " + this.getVehiculo().getPatente();
     }
 }

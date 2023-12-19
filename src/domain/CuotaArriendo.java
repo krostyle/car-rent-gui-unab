@@ -36,9 +36,9 @@ public class CuotaArriendo {
     }
 
     public boolean pagarCuota(){
-        if(!this.pagada){
-            this.pagada = true;
-            return true;
+        if(!isPagada()){
+            this.setPagada(true);
+            return isPagada();
         }
         return false;
     }

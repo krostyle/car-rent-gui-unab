@@ -72,7 +72,7 @@ public class AgregarCliente extends JDialog {
             gestorClientes.agregarCliente(nuevoCliente);
             JOptionPane.showMessageDialog(this, "Cliente agregado correctamente", "Cliente agregado", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al agregar cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         dispose();
     }
